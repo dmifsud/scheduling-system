@@ -1,11 +1,10 @@
 import { call, put, takeEvery, all } from 'typed-redux-saga';
-import { gamePresentersActionCreators } from '../store/game-presenters/actions';
 import { getGamePresenters as getGamePresentersBackend } from '@/backend/game-presenters.backend';
 import {
   getGamePresenters,
   getGamePresentersSuccess,
   getGamePresentersFail,
-} from '@/store/game-presenters/slice';
+} from '@/store/game-presenters.slice';
 
 function* getGamePresentersSaga() {
   try {

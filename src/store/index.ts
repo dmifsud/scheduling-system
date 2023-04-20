@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
-import gamePresentersReducer from './game-presenters/slice';
+import gamePresentersReducer from './game-presenters.slice';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from '@/sagas';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 const sagaMiddleware = createSagaMiddleware();

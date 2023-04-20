@@ -1,4 +1,5 @@
-import { getGamePresenters } from '@/store/game-presenters/slice';
+import { getGamePresenters } from '@/store/game-presenters.slice';
+import { useGamePresentersStateSelector } from '@/store/selectors/game-presenters.selectors';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +12,8 @@ interface GamePresentersProps {}
 const GamePresenters: React.FC<GamePresentersProps> = () => {
 
 const dispatch = useDispatch();
+const { data } = useGamePresentersStateSelector();
+
 
   useEffect(() => {
     console.log('calling');
@@ -20,13 +23,13 @@ const dispatch = useDispatch();
   return (
     <div>
       <h1>Game Presenters</h1>
-      {/* <ul>
-        {gamePresenters.map((gamePresenter) => (
+      <ul>
+        {data && data.map((gamePresenter) => (
           <li key={gamePresenter.id}>
-            {gamePresenter.firstName} {gamePresenter.lastName}
+            {gamePresenter.name}, shift: {gamePresenter.shift}
           </li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 };

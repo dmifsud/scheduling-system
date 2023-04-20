@@ -1,5 +1,5 @@
 import { GamePresenter } from '@/shared/models/game-presenter.model';
-import { StateSlice } from '../../shared/utils';
+import { StateSlice } from '../shared/utils';
 import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit';
 
