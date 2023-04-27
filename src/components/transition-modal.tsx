@@ -70,16 +70,6 @@ const TransitionModal: React.FC<ModalProps> = ({
                 </Fade>
             </Modal>
         </div>
-
-
-
-
-
-
-
-
-
-
     );
 };
 
