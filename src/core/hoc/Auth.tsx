@@ -10,8 +10,8 @@ import { useUser } from '@/lib/customHooks';
 import Login from '@/components/login';
 
 
-function withAuth<T>(Component: NextComponentType<T>) {
-    const Auth = (props: T) => {
+function withAuth(Component: NextComponentType) {
+    const Auth = () => {
 
         const { authenticated, loading } = useUser();
         // Login data added to props via redux-store (or use react context for example)
@@ -28,7 +28,6 @@ function withAuth<T>(Component: NextComponentType<T>) {
                     <Component />
                 </> : <Login />
             }
-
         </>
 
 

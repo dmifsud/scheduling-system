@@ -3,14 +3,18 @@ import { useState, useEffect } from 'react';
 // import { APP_ROUTES } from '../utils/constants';
 import { getAuthUser } from '@/backend/get-auth-user.backend';
 import { AuthUser } from '@/shared/models/auth-user.model';
-import { getLocalStorageValue, setLocalStorageValue } from './general.helpers';
+import { getLocalStorageValue } from './general.helpers';
+import { useAuthStateSelector } from '@/store/selectors/auth-user.selectors';
 
 export function useUser() {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [authenticated, setAutenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const authState = useAuthStateSelector();
+
   useEffect(() => {
     async function getUserDetails() {
+      console.log('authUser', authState);
       try {
         const user =
           getLocalStorageValue<AuthUser>('auth') ?? (await getAuthUser()); // update with token
@@ -18,7 +22,6 @@ export function useUser() {
         if (isAuthenticated) {
           setUser(user);
           setAutenticated(true);
-          setLocalStorageValue('auth', user);
           // TODO: update this info into redux store, this way the credentials can be accessed via selectors
         }
       } catch (err) {}
@@ -28,6 +31,6 @@ export function useUser() {
     }
     setLoading(true);
     getUserDetails();
-  }, []);
+  }, [authState]);
   return { user, authenticated, loading };
 }

@@ -13,6 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { logout } from '@/store/auth.slice';
 
 interface Page {
     title: string;
@@ -26,6 +28,7 @@ function DAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -157,7 +160,15 @@ function DAppBar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <MenuItem key={setting} onClick={() => {
+                                    switch (setting) {
+                                        case 'Logout':
+                                            console.log('call logout');
+                                            dispatch(logout());
+                                            break;
+                                    }
+                                    handleCloseUserMenu();
+                                }}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}

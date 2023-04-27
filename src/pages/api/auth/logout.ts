@@ -1,10 +1,9 @@
-// import jwt from 'jsonwebtoken';
 import { NextApiRequest, NextApiResponse } from 'next';
-import fakeDB, { generateGUID } from '../../../../mock-db/helper';
+import fakeDB from '../../../../mock-db/helper';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
-    case 'GET':
+    case 'POST':
       fakeDB.getTable(
         'authUsers',
         (response) => {
@@ -14,9 +13,23 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
               (user) => (user as any).fakeAuthToken === fakeToken,
             );
             if (userFound) {
-              const { fakeAuthToken, hashedPassword, ...restOfUser } =
-                userFound as any;
-              res.status(200).json(restOfUser);
+              const { fakeAuthToken, ...restOfUser } = userFound as any;
+              fakeDB.update(
+                'authUsers',
+                userFound.id,
+                {
+                  ...restOfUser,
+                  fakeAuthToken: '',
+                },
+                () => {
+                  res.status(200).json({ message: 'Successfully logged out' });
+                },
+                (err) => {
+                  res
+                    .status(err.errno ?? 500)
+                    .json({ message: 'Error signing out ' });
+                },
+              );
             } else {
               res.status(401).json({ message: 'Unauthorized' });
             }

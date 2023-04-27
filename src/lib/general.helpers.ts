@@ -12,3 +12,9 @@ export const getLocalStorageValue = <T>(key: string): T | undefined => {
     }
   }
 };
+
+export const clearLocalStorageItem = (key: string): void => {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem(key);
+  }
+};

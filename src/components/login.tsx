@@ -1,6 +1,8 @@
 import { TextField, Box, Button } from '@mui/material';
 import { Formik, FormikHelpers, Form, Field } from 'formik';
 import { object, string } from 'yup';
+import { useDispatch } from 'react-redux';
+import { login } from '@/store/auth.slice';
 
 interface Values {
     email: string;
@@ -9,6 +11,8 @@ interface Values {
 
 
 const Login: React.FC = () => {
+
+    const dispatch = useDispatch();
 
     return (
 
@@ -23,6 +27,14 @@ const Login: React.FC = () => {
                     { setSubmitting }: FormikHelpers<Values>,
                 ) => {
                     console.log(values);
+
+                    const { email, password } = values;
+
+                    dispatch(login({
+                        email,
+                        password
+                    }));
+
                     setSubmitting(false);
                 }}
                 validationSchema={object({
