@@ -11,7 +11,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       fakeDB.getTable(
         TABLE_NAME,
         (data) => {
-          res.status(200).json(data);
+          setTimeout(() => {
+            res.status(200).json(data); // TO Test delay
+          }, 500);
         },
         (err) => {
           console.log(err);

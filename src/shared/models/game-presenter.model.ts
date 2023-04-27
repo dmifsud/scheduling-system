@@ -1,6 +1,7 @@
 export interface GamePresenterModel {
   id: string;
   name: string;
+  surname: string;
   shift: string;
   table: string;
   breakSlot: string;

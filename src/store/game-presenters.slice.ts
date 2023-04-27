@@ -1,9 +1,9 @@
-import { GamePresenter } from '@/shared/models/game-presenter.model';
+import { GamePresenterModel } from '@/shared/models/game-presenter.model';
 import { StateSlice } from '../shared/utils';
 import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-export type GamePresentersState = StateSlice<GamePresenter[]>;
+export type GamePresentersState = StateSlice<GamePresenterModel[]>;
 
 const initialState: GamePresentersState = Object.freeze({
   data: null,
@@ -18,14 +18,11 @@ const gamePresentersSlice = createSlice({
   initialState,
   reducers: {
     getGamePresenters(state) {
-      state = {
-        ...initialState,
-        loading: true,
-      };
+      state.loading = true;
     },
     getGamePresentersSuccess(
       state,
-      action: PayloadAction<{ data: GamePresenter[] }>,
+      action: PayloadAction<{ data: GamePresenterModel[] }>,
     ) {
       state.loading = false;
       state.loaded = true;
@@ -49,5 +46,3 @@ export const {
   getGamePresentersFail,
 } = gamePresentersSlice.actions;
 export default gamePresentersSlice.reducer;
-
-// TODO: create rest of crud action reducers
