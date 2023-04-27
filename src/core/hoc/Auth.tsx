@@ -7,6 +7,7 @@ import React, { Component, PropsWithChildren, useEffect } from 'react';
 import { NextComponentType } from "next";
 import DAppBar from '@/components/app-bar';
 import { useUser } from '@/lib/customHooks';
+import Login from '@/components/login';
 
 
 function withAuth<T>(Component: NextComponentType<T>) {
@@ -25,7 +26,7 @@ function withAuth<T>(Component: NextComponentType<T>) {
                 authenticated ? <>
                     <DAppBar></DAppBar>
                     <Component />
-                </> : <div>Login</div>
+                </> : <Login />
             }
 
         </>
