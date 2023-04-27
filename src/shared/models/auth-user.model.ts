@@ -5,3 +5,7 @@ export interface AuthUser {
   surname: string;
   lastLoggedIn: string;
 }
+
+export interface AuthUserCommand extends Omit<AuthUser, 'id'> {
+  password: string;
+}

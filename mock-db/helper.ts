@@ -2,8 +2,8 @@ import fs from 'fs';
 import { randomBytes } from 'crypto';
 import { AuthUser } from '@/shared/models/auth-user.model';
 import { ApiResponse } from '@/shared/models/response.model';
-import { TableModel } from '@/shared/models/table.mode';
-import { GamePresenter } from '@/shared/models/game-presenter.model';
+import { TableModel } from '@/shared/models/table.model';
+import { GamePresenterModel } from '@/shared/models/game-presenter.model';
 
 const DATA_FILE = './mock-db/data.json';
 const LOCAL_FILE = './mock-db/data.local.json';
@@ -15,10 +15,10 @@ const checkLocalFile = (): void => {
   }
 };
 
-interface FakeDB {
+export interface FakeDB {
   authUsers: ApiResponse<AuthUser>;
   tables: ApiResponse<TableModel>;
-  gamePresenters: ApiResponse<GamePresenter>; // TODO: rename this to GamePresenterModel
+  gamePresenters: ApiResponse<GamePresenterModel>;
 }
 
 export const generateGUID = () => {
@@ -63,7 +63,7 @@ const fakeDB = {
   add: (
     tableName: keyof FakeDB,
     addData: FakeDB[typeof tableName]['data'][number],
-    cb: () => void,
+    cb: (addedData: FakeDB[typeof tableName]['data'][number]) => void,
     errCb: (e: NodeJS.ErrnoException) => void,
   ) => {
     fakeDB.read(
@@ -71,13 +71,17 @@ const fakeDB = {
         const table = db[tableName];
         fs.writeFile(
           LOCAL_FILE,
-          JSON.stringify({
-            ...db[tableName],
-            [tableName]: {
-              ...table,
-              data: [...table.data, addData],
+          JSON.stringify(
+            {
+              ...db,
+              [tableName]: {
+                ...table,
+                data: [...table.data, addData],
+              },
             },
-          }),
+            null,
+            2,
+          ),
           (err) => {
             if (err) {
               errCb(err);
@@ -85,7 +89,60 @@ const fakeDB = {
             }
 
             if (cb && typeof cb === 'function') {
-              cb();
+              cb(addData);
+            }
+          },
+        );
+      },
+      (err) => {
+        if (err) {
+          errCb(err);
+          return;
+        }
+      },
+    );
+  },
+  update: (
+    tableName: keyof FakeDB,
+    putId: string,
+    updateData: FakeDB[typeof tableName]['data'][number],
+    cb: (updatedData: FakeDB[typeof tableName]['data'][number]) => void,
+    errCb: (e: NodeJS.ErrnoException) => void,
+  ) => {
+    console.log('put id', putId);
+    fakeDB.read(
+      (db) => {
+        const table = db[tableName];
+        fs.writeFile(
+          LOCAL_FILE,
+          JSON.stringify(
+            {
+              ...db,
+              [tableName]: {
+                ...table,
+                data: table.data.map((row) => {
+                  if (row.id === putId) {
+                    const { id, ...restOfUpdate } = updateData;
+                    return {
+                      id: putId,
+                      ...restOfUpdate,
+                    };
+                  }
+                  return row;
+                }),
+              },
+            },
+            null,
+            2,
+          ),
+          (err) => {
+            if (err) {
+              errCb(err);
+              return;
+            }
+
+            if (cb && typeof cb === 'function') {
+              cb(updateData);
             }
           },
         );

@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import fakeDB, { FakeDB, generateGUID } from '../../../mock-db/helper';
 
-const TABLE_NAME: keyof FakeDB = 'gamePresenters';
+const TABLE_NAME: keyof FakeDB = 'tables';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
-      // Handle GET request for game-presenters
+      // Handle GET request for tables
       // TODO: create response type
       fakeDB.getTable(
         TABLE_NAME,
@@ -19,7 +19,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       );
       break;
     case 'POST':
-      // Handle POST request to create a new game presenter
+      // Handle POST request to create a new table
       fakeDB.add(
         TABLE_NAME,
         {
@@ -35,19 +35,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       );
       break;
     case 'PUT':
-      // Handle PUT request to update a table
-      const { id } = req.query;
-      fakeDB.update(
-        TABLE_NAME,
-        `${id?.toString()}`,
-        req.body,
-        (response) => {
-          res.status(200).json(response);
-        },
-        (err) => {
-          console.log(err);
-        },
-      );
+      // Handle PUT request to update a game presenter
+      res.status(200).json({ message: 'PUT game-presenters' });
       break;
     case 'DELETE':
       // Handle DELETE request to delete a game presenter
