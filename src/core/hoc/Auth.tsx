@@ -16,7 +16,6 @@ function withAuth(Component: NextComponentType) {
         const { authenticated, loading } = useUser();
         // Login data added to props via redux-store (or use react context for example)
         // const { isLoggedIn } = props;
-        console.log(loading);
         if (loading) {
             return <div>Loading...</div>
         }

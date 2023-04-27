@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
-// import { getAuthenticatedUser } from './common';
-// import { APP_ROUTES } from '../utils/constants';
 import { getAuthUser } from '@/backend/get-auth-user.backend';
 import { AuthUser } from '@/shared/models/auth-user.model';
-import { getLocalStorageValue } from './general.helpers';
 import { useAuthStateSelector } from '@/store/selectors/auth-user.selectors';
 
 export function useUser() {
@@ -14,17 +11,18 @@ export function useUser() {
 
   useEffect(() => {
     async function getUserDetails() {
-      console.log('authUser', authState);
       try {
-        const user =
-          getLocalStorageValue<AuthUser>('auth') ?? (await getAuthUser()); // update with token
+        const user = await getAuthUser(); // update with token
         const isAuthenticated = user && user.username;
         if (isAuthenticated) {
-          setUser(user);
+          setUser(user); // TODO: should hydrate authState
           setAutenticated(true);
           // TODO: update this info into redux store, this way the credentials can be accessed via selectors
         }
-      } catch (err) {}
+      } catch (err) {
+        setAutenticated(false);
+        setUser(null);
+      }
 
       setLoading(false);
       return;
