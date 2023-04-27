@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import fakeDB, { FakeDB, generateGUID } from '../../../mock-db/helper';
+import fakeDB, { FakeDB, generateGUID } from '../../../../mock-db/helper';
 
 const TABLE_NAME: keyof FakeDB = 'gamePresenters';
 
@@ -36,18 +36,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       break;
     case 'PUT':
       // Handle PUT request to update a table
-      const { id } = req.query;
-      fakeDB.update(
-        TABLE_NAME,
-        `${id?.toString()}`,
-        req.body,
-        (response) => {
-          res.status(200).json(response);
-        },
-        (err) => {
-          console.log(err);
-        },
-      );
+
       break;
     case 'DELETE':
       // Handle DELETE request to delete a game presenter

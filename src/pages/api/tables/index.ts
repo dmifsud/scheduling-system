@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import fakeDB, { FakeDB, generateGUID } from '../../../mock-db/helper';
+import fakeDB, { FakeDB, generateGUID } from '../../../../mock-db/helper';
 
 const TABLE_NAME: keyof FakeDB = 'tables';
 

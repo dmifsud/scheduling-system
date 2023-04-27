@@ -109,7 +109,6 @@ const fakeDB = {
     cb: (updatedData: FakeDB[typeof tableName]['data'][number]) => void,
     errCb: (e: NodeJS.ErrnoException) => void,
   ) => {
-    console.log('put id', putId);
     fakeDB.read(
       (db) => {
         const table = db[tableName];
@@ -143,6 +142,48 @@ const fakeDB = {
 
             if (cb && typeof cb === 'function') {
               cb(updateData);
+            }
+          },
+        );
+      },
+      (err) => {
+        if (err) {
+          errCb(err);
+          return;
+        }
+      },
+    );
+  },
+  delete: (
+    tableName: keyof FakeDB,
+    deleteId: string,
+    cb: () => void,
+    errCb: (e: NodeJS.ErrnoException) => void,
+  ) => {
+    fakeDB.read(
+      (db) => {
+        const table = db[tableName];
+        fs.writeFile(
+          LOCAL_FILE,
+          JSON.stringify(
+            {
+              ...db,
+              [tableName]: {
+                ...table,
+                data: table.data.filter((row) => row.id !== deleteId),
+              },
+            },
+            null,
+            2,
+          ),
+          (err) => {
+            if (err) {
+              errCb(err);
+              return;
+            }
+
+            if (cb && typeof cb === 'function') {
+              cb();
             }
           },
         );
