@@ -59,9 +59,9 @@ const TransitionModal: React.FC<ModalProps> = ({
 
                             </Typography>
 
-                            <Typography variant="body2">
+                            <div>
                                 {children}
-                            </Typography>
+                            </div>
                         </CardContent>
                         {/* <CardActions>
                                 <Button size="small">Learn More</Button>

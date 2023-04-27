@@ -6,8 +6,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     case 'GET':
       // Handle GET request for game-presenters
       // TODO: create response type
-      fakeDB.read(
-        'game-presenters',
+      fakeDB.getTable(
+        'gamePresenters',
         (data) => {
           res.status(200).json(data);
         },

@@ -1,13 +1,24 @@
 {
-  "auth-users": [
-    {
-      "username": "dmifsud",
-      "name": "David",
-      "surname": "Mifsud",
-      "lastLoggedIn": "yesterday"
-    }
-  ],
-  "game-presenters": {
+  "authUsers": {
+    "data": [
+      {
+        "id": "1",
+        "username": "dmifsud",
+        "name": "David",
+        "surname": "Mifsud",
+        "lastLoggedIn": "yesterday"
+      }
+    ]
+  },
+  "tables": {
+    "data": [
+      {
+        "id": "3AFC8023-514C-407E-882F-77D05ED27C15",
+        "name": "Table 1"
+      }
+    ]
+  },
+  "gamePresenters": {
     "data": [
       {
         "id": 1,
