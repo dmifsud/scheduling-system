@@ -7,9 +7,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { ApiGenericResponse } from '@/shared/models/response.model';
 
-export type EditGamePresenterState = StateSlice<ApiGenericResponse>;
+export type DeleteGamePresenterState = StateSlice<ApiGenericResponse>;
 
-const initialState: EditGamePresenterState = Object.freeze({
+const initialState: DeleteGamePresenterState = Object.freeze({
   data: null,
   errorMessage: null,
   hasError: false,

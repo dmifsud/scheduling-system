@@ -23,6 +23,7 @@ import {
 } from '@/store/add-game-presenters.slice';
 import {
   editGamePresenter,
+  editGamePresenterFail,
   editGamePresenterSuccess,
 } from '@/store/edit-game-presenters.slice';
 import { gamePresentersStateSelector } from '@/store/selectors/game-presenters.selectors';
@@ -68,7 +69,7 @@ function* editGamePresenterSaga({
     yield* put(editGamePresenterSuccess(gamePresenter));
   } catch (error) {
     console.log('error', error);
-    yield* put(addGamePresenterFail()); // TODO: can pass error to action
+    yield* put(editGamePresenterFail()); // TODO: can pass error to action
   }
 }
 
