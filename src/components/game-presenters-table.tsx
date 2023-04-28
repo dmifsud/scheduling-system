@@ -19,7 +19,7 @@ import {
 } from '@mui/material';
 import ConfirmDialog from './basic/confirm-dialog';
 import TransitionModal from '@/components/transition-modal';
-import AddGamePresenter from '@/components/add-game-presenter';
+import ManageGamePresenterForm from '@/components/manage-game-presenter-form';
 import { useEditGamePresenterStateSelector } from '@/store/selectors/edit-game-presenters.selectors';
 import { deleteGamePresenter } from '@/store/delete-game-presenter.slice';
 
@@ -116,7 +116,7 @@ const GamePresentersTable: React.FC = () => {
                                                 open={editDialogOpen === gamePresenter.id}
                                                 onClose={() => setEditDialogOpen('')}
                                             >
-                                                <AddGamePresenter gamePresenter={gamePresenter} />
+                                                <ManageGamePresenterForm gamePresenter={gamePresenter} />
                                             </TransitionModal>
                                             <IconButton
                                                 size="large"

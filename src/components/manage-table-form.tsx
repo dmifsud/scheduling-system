@@ -17,7 +17,7 @@ type ManageTableFormProps = {
     table?: TableModel
 }
 
-const AddTable: React.FC<ManageTableFormProps> = ({
+const ManageTableForm: React.FC<ManageTableFormProps> = ({
     table
 }: ManageTableFormProps) => {
 
@@ -92,4 +92,4 @@ const AddTable: React.FC<ManageTableFormProps> = ({
     )
 }
 
-export default AddTable;
+export default ManageTableForm;

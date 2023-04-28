@@ -21,7 +21,7 @@ import { useGetTablesStateSelector } from '@/store/selectors/get-tables.selector
 import { useEditTableStateSelector } from '@/store/selectors/edit-table.selectors';
 import { useAddTableStateSelector } from '@/store/selectors/add-table.selectors';
 import { deleteTable } from '@/store/delete-table.slice';
-import AddTable from './add-table';
+import ManageTableForm from './manage-table-form';
 
 const SkeletonRow: React.FC = () => {
     return (
@@ -105,7 +105,7 @@ const TableListTable: React.FC = () => {
                                                 open={editDialogOpen === table.id}
                                                 onClose={() => setEditDialogOpen('')}
                                             >
-                                                <AddTable table={table} />
+                                                <ManageTableForm table={table} />
                                             </TransitionModal>
                                             <IconButton
                                                 size="large"

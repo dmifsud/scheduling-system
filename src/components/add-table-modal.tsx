@@ -1,7 +1,7 @@
 import TransitionModal from '@/components/transition-modal';
 import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
-import AddTable from './add-table';
+import ManageTableForm from './manage-table-form';
 import { useAddTableStateSelector } from '@/store/selectors/add-table.selectors';
 
 
@@ -24,7 +24,7 @@ const AddTableModal: React.FC = () => {
         <>
             <Button onClick={handleOpen}>Add Table</Button>
             <TransitionModal title="Add Table" open={open} onClose={handleClose}>
-                <AddTable />
+                <ManageTableForm />
             </TransitionModal>
         </>
     )

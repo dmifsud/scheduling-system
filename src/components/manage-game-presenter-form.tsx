@@ -18,7 +18,7 @@ type ManageGamePresenterFormProps = {
     gamePresenter?: GamePresenterModel
 };
 
-const AddGamePresenter: React.FC<ManageGamePresenterFormProps> = ({
+const ManageGamePresenterForm: React.FC<ManageGamePresenterFormProps> = ({
     gamePresenter,
 }: ManageGamePresenterFormProps) => {
 
@@ -110,4 +110,4 @@ const AddGamePresenter: React.FC<ManageGamePresenterFormProps> = ({
     )
 }
 
-export default AddGamePresenter;
+export default ManageGamePresenterForm;

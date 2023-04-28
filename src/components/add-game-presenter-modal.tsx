@@ -1,4 +1,4 @@
-import AddGamePresenter from '@/components/add-game-presenter';
+import ManageGamePresenterForm from '@/components/manage-game-presenter-form';
 import TransitionModal from '@/components/transition-modal';
 import { useAddGamePresenterStateSelector } from '@/store/selectors/add-game-presenters.selectors';
 import { Button } from '@mui/material';
@@ -27,7 +27,7 @@ const AddGamePresenterModal: React.FC = () => {
             <Button onClick={handleOpen}>Add Game Presenter</Button>
 
             <TransitionModal title="Add Game Presenter" open={open} onClose={handleClose}>
-                <AddGamePresenter />
+                <ManageGamePresenterForm />
             </TransitionModal>
         </>
     )
