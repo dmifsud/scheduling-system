@@ -4,21 +4,19 @@
 import AddGamePresenterModal from '@/components/add-game-presenter-modal';
 import GamePresentersTable from '@/components/game-presenters-table';
 
+
 import withAuth from '@/core/hoc/Auth';
+import CrudLayout from '../../components/basic/crud-layout';
 
 interface GamePresentersProps { }
 
 const GamePresenters: React.FC<GamePresentersProps> = () => {
 
-
-
-
   return (
     <div>
-      <h1>Game Presenters</h1>
-      <AddGamePresenterModal />
-      <GamePresentersTable />
-
+      <CrudLayout pageTitle="Game Presenters" addAction={<AddGamePresenterModal />}>
+        <GamePresentersTable />
+      </CrudLayout>
     </div>
   );
 };

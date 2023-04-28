@@ -8,8 +8,18 @@
         "name": "David",
         "surname": "Mifsud",
         "lastLoggedIn": "yesterday",
-        "fakeAuthToken": "3A08EAC958294BF7B07AE351AC8A32B6",
+        "fakeAuthToken": "",
         "hashedPassword": "1af7f1264e701dd1f5060a624ed03a72e538e292b24a57451d015965c2d4f67da4023524a64b6e8a52052fc6ff157cde0bac991266171fef49fc76eff48d6488"
+      },
+      {
+        "id": "2",
+        "email": "jdoe@email.com",
+        "username": "jdoe",
+        "name": "John",
+        "surname": "Doe",
+        "lastLoggedIn": "2023-04-28T12:25:59.418Z",
+        "hashedPassword": "8803bc3c0775202c8e5e34d962a406316e0ff1019b42d8b9d3f8e23ae8ad59e655d7108ca65815e1f56d7f244c732a8cc8377bc77afcfb05d0792dfebe4179f4",
+        "fakeAuthToken": ""
       }
     ]
   },
