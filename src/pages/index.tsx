@@ -1,110 +1,107 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import withAuth from '@/core/hoc/Auth'
+import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
+import { RotationScheduleResponse } from '@/shared/models/rotation-schedule.model';
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
+function generateTimeSlots(startTime: string, endTime: string): string[] {
+  const timeSlots: string[] = [];
+  let currentTime = startTime;
+
+  while (currentTime < endTime) {
+    timeSlots.push(`${currentTime} - ${addMinutes(currentTime, 20)}`);
+    currentTime = addMinutes(currentTime, 20);
+  }
+
+  return timeSlots;
+}
+
+function addMinutes(time: string, minutes: number): string {
+  const [hour, minute] = time.split(':').map(Number);
+  const date = new Date();
+  date.setHours(hour);
+  date.setMinutes(minute);
+  date.setMinutes(date.getMinutes() + minutes);
+  return `${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
+}
+
+function padZero(num: number): string {
+  return num < 10 ? `0${num}` : `${num}`;
+}
+
+// Example usage:
+const timeSlots = generateTimeSlots('07:00', '23:40');
+const nightSlots = generateTimeSlots('00:00', '06:40');
+console.log(timeSlots); // ['07:00 - 07:20', '07:20 - 07:40', '07:40 - 08:00', ..., '23:20 - 23:40']
+console.log(nightSlots);
+const rows = [
+  {
+    gpName: 'Dave',
+    tables: ['Table 1', 'Table 2', 'Table 3', 'Break']
+  },
+  {
+    gpName: 'John',
+    tables: ['Table 2', 'Table 3', 'Break', 'Table 1']
+  }
+];
+
+const dummyResponse: RotationScheduleResponse[] = [
+  {
+    "id": "1",
+    "gamePresenterTables": [
+      {
+        "gamePresenterId": "1",
+        "gamePresenterName": "John Doe",
+        "gamePresenterTables": [
+          {
+            "tableId": "3AFC8023514C407E882F77D05ED27C15",
+            "isBreak": false,
+            "tableName": "Table 1"
+          },
+          {
+            "tableId": null,
+            "isBreak": true,
+            "tableName": ""
+          }
+        ]
+      }
+    ]
+  }
+];
+
+const allTimeSlots = [...timeSlots, ...nightSlots];
+console.log('time slots amount', allTimeSlots.length);
 function Home() {
   return (
     <>
+      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell></TableCell>
+                {allTimeSlots.map((slot, i) => <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: (i % 2) ? 'aliceblue' : 'none' }} key={i}>{slot}</TableCell>)}
 
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {dummyResponse[0].gamePresenterTables.map((row, rowNum) => (
+                <TableRow
+                  key={row.gamePresenterId}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 }, backgroundColor: (rowNum % 2) ? 'aliceblue' : 'none' }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.gamePresenterName}
+                  </TableCell>
+                  {row.gamePresenterTables.map((table, i) => <TableCell key={i} sx={{ backgroundColor: ((i) % 2) ? 'aliceblue' : 'none' }}>{table.isBreak ? 'Break' : table.tableName}</TableCell>)}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper >
     </>
   )
 }

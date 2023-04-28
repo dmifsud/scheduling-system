@@ -16,7 +16,7 @@
   "tables": {
     "data": [
       {
-        "id": "3AFC8023-514C-407E-882F-77D05ED27C15",
+        "id": "3AFC8023514C407E882F77D05ED27C15",
         "name": "Table 1"
       }
     ]
@@ -30,6 +30,29 @@
         "shift": "Morning",
         "table": "Table 1",
         "breakSlot": "10:00 AM - 10:30 AM"
+      }
+    ]
+  },
+  "rotationSchedule": {
+    "data": [
+      {
+        "id": "1",
+        "gamePresenterTables": [
+          {
+            "gamePresenterId": "1",
+            "timeSlots": [
+              {
+                "slotName": "07:00 - 07:20",
+                "tableId": "3AFC8023514C407E882F77D05ED27C15",
+                "isBreak": false
+              },
+              {
+                "tableId": null,
+                "isBreak": true
+              }
+            ]
+          }
+        ]
       }
     ]
   }
