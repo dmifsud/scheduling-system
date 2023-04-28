@@ -16,6 +16,8 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { logout } from '@/store/auth.slice';
 import { useAuthStateSelector } from '@/store/selectors/auth-user.selectors';
+import { getLocalStorageValue } from '@/lib/general.helpers';
+import { AuthUser } from '@/shared/models/auth-user.model';
 
 interface Page {
     title: string;
@@ -28,9 +30,11 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function DAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-    const { data: loggedInUser } = useAuthStateSelector();
+    // const { data: loggedInUser } = useAuthStateSelector();
     const router = useRouter();
     const dispatch = useDispatch();
+
+    const loggedInUser = getLocalStorageValue('auth') as AuthUser; // TODO: hack. Ideally this is handled via persistent store
 
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {

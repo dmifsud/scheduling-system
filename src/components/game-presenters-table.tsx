@@ -38,9 +38,6 @@ const SkeletonRow: React.FC = () => {
             <TableCell align="right">
                 <Skeleton variant="text" width="100%" height={45} />
             </TableCell>
-            <TableCell align="right">
-                <Skeleton variant="text" width="100%" height={45} />
-            </TableCell>
         </TableRow>
     );
 };
@@ -85,9 +82,8 @@ const GamePresentersTable: React.FC = () => {
                     <TableRow>
                         <TableCell>Name</TableCell>
                         <TableCell>Surname</TableCell>
-                        <TableCell align="right">Shift</TableCell>
-                        <TableCell align="right"></TableCell>
-                        <TableCell align="right"></TableCell>
+                        <TableCell width={40} align="right"></TableCell>
+                        <TableCell width={40} align="right"></TableCell>
                     </TableRow>
                 </TableHead>
 
@@ -109,7 +105,6 @@ const GamePresentersTable: React.FC = () => {
                                         <TableCell component="th" scope="row">
                                             {gamePresenter.surname}
                                         </TableCell>
-                                        <TableCell align="right">{gamePresenter.shift}</TableCell>
                                         <TableCell align="right">
                                             <TransitionModal
                                                 title={`Edit ${gamePresenter.name} ${gamePresenter.surname}`}
@@ -143,17 +138,6 @@ const GamePresentersTable: React.FC = () => {
                                                     color="inherit"
                                                 >
                                                     <DeleteOutlineIcon />
-                                                    {/* <LoopIcon sx={{
-                                            animation: "spin 2s linear infinite",
-                                            "@keyframes spin": {
-                                                "0%": {
-                                                transform: "rotate(360deg)",
-                                                },
-                                                "100%": {
-                                                transform: "rotate(0deg)",
-                                                },
-                                            },
-                                            }} /> */}
                                                 </IconButton>
                                             </ConfirmDialog>
                                         </TableCell>

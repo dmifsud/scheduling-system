@@ -15,7 +15,7 @@ const CrudLayout: React.FC<CrudLayoutProps> = ({
             <Box sx={{ p: 4, margin: '20px auto' }}>
 
                 <Grid container spacing={2}>
-                    <Grid xs={8}>
+                    <Grid item xs={8}>
                         <Typography
                             variant="h4"
                             noWrap
@@ -23,10 +23,10 @@ const CrudLayout: React.FC<CrudLayoutProps> = ({
                             {pageTitle}
                         </Typography>
                     </Grid>
-                    <Grid xs={4} sx={{ textAlign: 'right' }}>
+                    <Grid item xs={4} sx={{ textAlign: 'right' }}>
                         {addAction}
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                         <Box height={20} />
                         {children}
                     </Grid>
