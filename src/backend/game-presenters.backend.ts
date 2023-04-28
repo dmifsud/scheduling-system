@@ -29,7 +29,7 @@ export const updateGamePresenter = async (
     `${API_URL}/game-presenters/${id}`,
     gamePresenter,
   );
-  return response.data;
+  return response.data as GamePresenterModel;
 };
 
 export const deleteGamePresenter = async (id: number) => {

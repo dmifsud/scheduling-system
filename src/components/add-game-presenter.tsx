@@ -1,40 +1,70 @@
 import { addGamePresenter } from '@/store/add-game-presenters.slice';
 import { TextField, Box, Button } from '@mui/material';
 import { Formik, FormikHelpers, Form, Field } from 'formik';
-import { useEffect } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { object, string } from 'yup';
 import { useAddGamePresenterStateSelector } from '../store/selectors/add-game-presenters.selectors';
+import { GamePresenterModel } from '@/shared/models/game-presenter.model';
+import { editGamePresenter } from '@/store/edit-game-presenters.slice';
+import { useEditGamePresenterStateSelector } from '@/store/selectors/edit-game-presenters.selectors';
 
 interface Values {
     name: string;
     surname: string;
 }
 
-const AddGamePresenter: React.FC = () => {
+type ManageGamePresenterFormProps = {
+    gamePresenter?: GamePresenterModel
+};
+
+const AddGamePresenter: React.FC = ({
+    gamePresenter,
+}: ManageGamePresenterFormProps) => {
 
     const dispatch = useDispatch();
 
-    const { loading } = useAddGamePresenterStateSelector();
+    const [loading, setLoading] = useState(false);
+    const { loading: addLoading } = useAddGamePresenterStateSelector();
+    const { loading: editLoading } = useEditGamePresenterStateSelector();
+
+    const generateSubmitButtonText = () => {
+        if (Boolean(gamePresenter)) {
+            return editLoading ? <>Updating&hellip;</> : <>Update</>;
+        }
+        return addLoading ? <>Adding&hellip;</> : <>Add</>;
+    }
+
+    useEffect(() => {
+        setLoading(addLoading || editLoading);
+    }, [addLoading, editLoading]);
 
     return (
         <Formik
             initialValues={{
-                name: '',
-                surname: '',
+                name: gamePresenter?.name ?? '',
+                surname: gamePresenter?.surname ?? '',
             }}
             onSubmit={(
                 values: Values,
                 { setSubmitting }: FormikHelpers<Values>,
             ) => {
                 const { name, surname } = values;
-                dispatch(addGamePresenter({
-                    name,
-                    surname,
-                    shift: 'Afternoon', // TODO: remove this
-                    table: 'Table 3',
-                    breakSlot: '10:00 AM - 10:30 AM'
-                }))
+                if (gamePresenter) { // Edit
+                    dispatch(editGamePresenter({
+                        ...gamePresenter,
+                        name,
+                        surname
+                    }));
+                } else {
+                    dispatch(addGamePresenter({
+                        name,
+                        surname,
+                        shift: 'Afternoon', // TODO: remove this
+                        table: 'Table 3',
+                        breakSlot: '10:00 AM - 10:30 AM'
+                    }))
+                }
                 setSubmitting(false);
             }}
             validationSchema={object({
@@ -72,7 +102,7 @@ const AddGamePresenter: React.FC = () => {
                         disableElevation
                         disabled={!dirty || !isValid || loading}
                     >
-                        {loading ? <>Adding&hellip;</> : <>Add</>}
+                        {generateSubmitButtonText()}
                     </Button>
                 </Form>
             )}
