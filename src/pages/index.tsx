@@ -1,8 +1,9 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import withAuth from '@/core/hoc/Auth'
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
-import { RotationScheduleResponse } from '@/shared/models/rotation-schedule.model';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useGetTodaysRotationScheduleSelector } from '@/store/selectors/get-rotation-schedules.selectors';
+import { getRotationSchedules } from '@/store/get-rotation-schdules.slice';
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -36,44 +37,20 @@ const timeSlots = generateTimeSlots('07:00', '23:40');
 const nightSlots = generateTimeSlots('00:00', '06:40');
 console.log(timeSlots); // ['07:00 - 07:20', '07:20 - 07:40', '07:40 - 08:00', ..., '23:20 - 23:40']
 console.log(nightSlots);
-const rows = [
-  {
-    gpName: 'Dave',
-    tables: ['Table 1', 'Table 2', 'Table 3', 'Break']
-  },
-  {
-    gpName: 'John',
-    tables: ['Table 2', 'Table 3', 'Break', 'Table 1']
-  }
-];
-
-const dummyResponse: RotationScheduleResponse[] = [
-  {
-    "id": "1",
-    "gamePresenterTables": [
-      {
-        "gamePresenterId": "1",
-        "gamePresenterName": "John Doe",
-        "gamePresenterTables": [
-          {
-            "tableId": "3AFC8023514C407E882F77D05ED27C15",
-            "isBreak": false,
-            "tableName": "Table 1"
-          },
-          {
-            "tableId": null,
-            "isBreak": true,
-            "tableName": ""
-          }
-        ]
-      }
-    ]
-  }
-];
-
 const allTimeSlots = [...timeSlots, ...nightSlots];
 console.log('time slots amount', allTimeSlots.length);
+
+
 function Home() {
+
+  const dispatch = useDispatch();
+  const todaysRotationSchedule = useGetTodaysRotationScheduleSelector();
+
+
+  useEffect(() => {
+    dispatch(getRotationSchedules());
+  }, [dispatch])
+
   return (
     <>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -83,19 +60,18 @@ function Home() {
               <TableRow>
                 <TableCell></TableCell>
                 {allTimeSlots.map((slot, i) => <TableCell sx={{ whiteSpace: 'nowrap', backgroundColor: (i % 2) ? 'aliceblue' : 'none' }} key={i}>{slot}</TableCell>)}
-
               </TableRow>
             </TableHead>
             <TableBody>
-              {dummyResponse[0].gamePresenterTables.map((row, rowNum) => (
+              {todaysRotationSchedule && todaysRotationSchedule.gamePresenterTables.map((row) => (
                 <TableRow
-                  key={row.gamePresenterId}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 }, backgroundColor: (rowNum % 2) ? 'aliceblue' : 'none' }}
+                  key={row.gamePresenterName}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: '#f1f1f1' }, '&:hover td': { backgroundColor: '#f1f1f1' } }}
                 >
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" sx={{ whiteSpace: 'nowrap ' }}>
                     {row.gamePresenterName}
                   </TableCell>
-                  {row.gamePresenterTables.map((table, i) => <TableCell key={i} sx={{ backgroundColor: ((i) % 2) ? 'aliceblue' : 'none' }}>{table.isBreak ? 'Break' : table.tableName}</TableCell>)}
+                  {row.tableTimeSlots.map((table, i) => <TableCell key={i} sx={{ backgroundColor: ((i) % 2) ? 'aliceblue' : 'none' }}>{table.tableNameOrBreak}</TableCell>)}
                 </TableRow>
               ))}
             </TableBody>

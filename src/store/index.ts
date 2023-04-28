@@ -9,6 +9,8 @@ import addTableReducer from './add-table.slice';
 import editTableReducer from './edit-table.slice';
 import deleteTableReducer from './delete-table.slice';
 
+import getRotationSchedulesReducer from './get-rotation-schdules.slice';
+
 import authReducer from './auth.slice';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from '@/sagas';
@@ -29,6 +31,8 @@ const rootReducer = combineReducers({
   deleteTable: deleteTableReducer,
   // AUTH
   auth: authReducer,
+  // ROTATION SCHEDULE
+  getRotationSchedules: getRotationSchedulesReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

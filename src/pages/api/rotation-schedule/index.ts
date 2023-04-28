@@ -16,34 +16,15 @@ function findGPFullName(gpList: GamePresenterModel[], id: string): string {
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
-      fakeDB.read(
+      fakeDB.getTable(
+        'rotationSchedule',
         (response) => {
-          const { rotationSchedule, tables, gamePresenters } = response;
-
-          res.status(200).json({
-            data: rotationSchedule.data.map((rotation) => ({
-              id: rotation.id,
-              gamePresenterTables: rotation.gamePresenterTables.map(
-                (gpTable) => ({
-                  gamePresenterId: gpTable.gamePresenterId,
-                  gamePresenterName: findGPFullName(
-                    gamePresenters.data,
-                    gpTable.gamePresenterId,
-                  ),
-                  gamePresenterTables: gpTable.timeSlots.map((ts) => ({
-                    ...ts,
-                    tableName:
-                      tables.data?.find((table) => table.id === ts.tableId)
-                        ?.name ?? '',
-                  })),
-                }),
-              ),
-            })),
-          } as ApiResponse<RotationScheduleResponse>);
+          res.status(200).json(response);
         },
         (err) => {
           console.log(err);
         },
       );
+      break;
   }
 }

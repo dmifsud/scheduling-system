@@ -4,7 +4,7 @@ import { AuthUser } from '@/shared/models/auth-user.model';
 import { ApiResponse } from '@/shared/models/response.model';
 import { TableModel } from '@/shared/models/table.model';
 import { GamePresenterModel } from '@/shared/models/game-presenter.model';
-import { RotationScheduleDB } from '@/shared/models/rotation-schedule.model';
+import { RotationScheduleResponse } from '@/shared/models/rotation-schedule.model';
 
 const DATA_FILE = './mock-db/data.json';
 const LOCAL_FILE = './mock-db/data.local.json';
@@ -20,7 +20,7 @@ export interface FakeDB {
   authUsers: ApiResponse<AuthUser>;
   tables: ApiResponse<TableModel>;
   gamePresenters: ApiResponse<GamePresenterModel>;
-  rotationSchedule: ApiResponse<RotationScheduleDB>;
+  rotationSchedule: ApiResponse<RotationScheduleResponse>;
 }
 
 export const generateGUID = () => {

@@ -1,32 +1,17 @@
 import { Nullable } from '../utils';
 
-export interface RotationScheduleTimeSlotDB {
+export interface RotationScheduleTimeSlotResponse {
+  tableNameOrBreak: string;
   slotName: string;
-  tableId: Nullable<string>;
-  isBreak: boolean;
 }
 
-export interface GamePresenterTableDB {
-  gamePresenterId: string;
-  timeSlots: RotationScheduleTimeSlotDB[];
-}
-
-export interface RotationScheduleDB {
-  id: string;
-  gamePresenterTables: GamePresenterTableDB[];
-}
-
-export interface RotationScheduleTimeSlotResponse
-  extends RotationScheduleTimeSlotDB {
-  tableName: string;
-}
-
-export interface GamePresenterTableResponse extends GamePresenterTableDB {
+export interface GamePresenterTableResponse {
   gamePresenterName: string;
-  gamePresenterTables: RotationScheduleTimeSlotResponse[];
+  tableTimeSlots: RotationScheduleTimeSlotResponse[];
 }
 
 export interface RotationScheduleResponse {
   id: string;
+  date: string;
   gamePresenterTables: GamePresenterTableResponse[];
 }

@@ -37,18 +37,308 @@
     "data": [
       {
         "id": "1",
+        "date": "2023-04-28T10:46:30.730Z",
         "gamePresenterTables": [
           {
-            "gamePresenterId": "1",
-            "timeSlots": [
+            "gamePresenterName": "John Doe",
+            "tableTimeSlots": [
               {
                 "slotName": "07:00 - 07:20",
-                "tableId": "3AFC8023514C407E882F77D05ED27C15",
-                "isBreak": false
+                "tableNameOrBreak": "Table 1"
               },
               {
-                "tableId": null,
-                "isBreak": true
+                "slotName": "07:20 - 07:40",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "07:40 - 08:00",
+                "tableNameOrBreak": "Table 4"
+              },
+              {
+                "slotName": "08:00 - 08:20",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "08:20 - 08:40",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "08:40 - 09:00",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "09:00 - 09:20",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "09:20 - 09:40",
+                "tableNameOrBreak": "Table 1"
+              },
+              {
+                "slotName": "09:40 - 10:00",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "10:00 - 10:20",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "10:20 - 10:40",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "10:40 - 11:00",
+                "tableNameOrBreak": "Table 1"
+              },
+              {
+                "slotName": "11:00 - 11:20",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "11:20 - 11:40",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "11:40 - 12:00",
+                "tableNameOrBreak": "Table 1"
+              },
+              {
+                "slotName": "12:00 - 12:20",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "12:20 - 12:40",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "12:40 - 13:00",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "13:00 - 13:20",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "13:20 - 13:40",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "13:40 - 14:00",
+                "tableNameOrBreak": "Table 1"
+              },
+              {
+                "slotName": "14:00 - 14:20",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "14:20 - 14:40",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "14:40 - 15:00",
+                "tableNameOrBreak": "Break"
+              }
+            ]
+          },
+          {
+            "gamePresenterName": "Jack Johnson",
+            "tableTimeSlots": [
+              {
+                "slotName": "07:00 - 07:20",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "07:20 - 07:40",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "07:40 - 08:00",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "08:00 - 08:20",
+                "tableNameOrBreak": "Table 1"
+              },
+              {
+                "slotName": "08:20 - 08:40",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "08:40 - 09:00",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "09:00 - 09:20",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "09:20 - 09:40",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "09:40 - 10:00",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "10:00 - 10:20",
+                "tableNameOrBreak": "Table 4"
+              },
+              {
+                "slotName": "10:20 - 10:40",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "10:40 - 11:00",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "11:00 - 11:20",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "11:20 - 11:40",
+                "tableNameOrBreak": "Table 4"
+              },
+              {
+                "slotName": "11:40 - 12:00",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "12:00 - 12:20",
+                "tableNameOrBreak": "Table 1"
+              },
+              {
+                "slotName": "12:20 - 12:40",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "12:40 - 13:00",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "13:00 - 13:20",
+                "tableNameOrBreak": "Table 4"
+              },
+              {
+                "slotName": "13:20 - 13:40",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "13:40 - 14:00",
+                "tableNameOrBreak": "Table 2"
+              },
+              {
+                "slotName": "14:00 - 14:20",
+                "tableNameOrBreak": "Table 3"
+              },
+              {
+                "slotName": "14:20 - 14:40",
+                "tableNameOrBreak": "Table 4"
+              },
+              {
+                "slotName": "14:40 - 15:00",
+                "tableNameOrBreak": "Table 1"
+              }
+            ]
+          },
+          {
+            "gamePresenterName": "David Mifsud",
+            "tableTimeSlots": [
+              {
+                "slotName": "07:00 - 07:20",
+                "tableNameOrBreak": "Table 4"
+              },
+              {
+                "slotName": "07:20 - 07:40",
+                "tableNameOrBreak": "Break"
+              },
+              {
+                "slotName": "07:40 - 08:00",
+                "tableNameOrBreak": "Table 5"
+              },
+              {
+                "slotName": "08:00 - 08:20",
+                "tableNameOrBreak": "Table 6"
+              },
+              {
+                "slotName": "08:20 - 08:40",
+                "tableNameOrBreak": "Table 7"
+              },
+              {
+                "slotName": "08:40 - 09:00",
+                "tableNameOrBreak": "Table 5"
+              },
+              {
+                "slotName": "09:00 - 09:20",
+                "tableNameOrBreak": "Table 6"
+              },
+              {
+                "slotName": "09:20 - 09:40",
+                "tableNameOrBreak": "Table 7"
+              },
+              {
+                "slotName": "09:40 - 10:00",
+                "tableNameOrBreak": "Table 5"
+              },
+              {
+                "slotName": "10:00 - 10:20",
+                "tableNameOrBreak": "Table 6"
+              },
+              {
+                "slotName": "10:20 - 10:40",
+                "tableNameOrBreak": "Table 7"
+              },
+              {
+                "slotName": "10:40 - 11:00",
+                "tableNameOrBreak": "Table 5"
+              },
+              {
+                "slotName": "11:00 - 11:20",
+                "tableNameOrBreak": "Table 6"
+              },
+              {
+                "slotName": "11:20 - 11:40",
+                "tableNameOrBreak": "Table 7"
+              },
+              {
+                "slotName": "11:40 - 12:00",
+                "tableNameOrBreak": "Table 5"
+              },
+              {
+                "slotName": "12:00 - 12:20",
+                "tableNameOrBreak": "Table 6"
+              },
+              {
+                "slotName": "12:20 - 12:40",
+                "tableNameOrBreak": "Table 7"
+              },
+              {
+                "slotName": "12:40 - 13:00",
+                "tableNameOrBreak": "Table 5"
+              },
+              {
+                "slotName": "13:00 - 13:20",
+                "tableNameOrBreak": "Table 6"
+              },
+              {
+                "slotName": "13:20 - 13:40",
+                "tableNameOrBreak": "Table 7"
+              },
+              {
+                "slotName": "13:40 - 14:00",
+                "tableNameOrBreak": "Table 5"
+              },
+              {
+                "slotName": "14:00 - 14:20",
+                "tableNameOrBreak": "Table 6"
+              },
+              {
+                "slotName": "14:20 - 14:40",
+                "tableNameOrBreak": "Table 7"
+              },
+              {
+                "slotName": "14:40 - 15:00",
+                "tableNameOrBreak": "Break"
               }
             ]
           }

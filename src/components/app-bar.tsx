@@ -160,7 +160,7 @@ function DAppBar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={() => {
+                                <MenuItem key={setting} disabled={setting !== 'Logout'} onClick={() => {
                                     switch (setting) {
                                         case 'Logout':
                                             console.log('call logout');
