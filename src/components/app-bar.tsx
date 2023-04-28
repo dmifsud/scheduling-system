@@ -15,6 +15,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { logout } from '@/store/auth.slice';
+import { useAuthStateSelector } from '@/store/selectors/auth-user.selectors';
 
 interface Page {
     title: string;
@@ -27,8 +28,10 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function DAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const { data: loggedInUser } = useAuthStateSelector();
     const router = useRouter();
     const dispatch = useDispatch();
+
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -139,7 +142,7 @@ function DAppBar() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="David Mifsud" src="/assets/images/dmifsud.png" />
+                                <Avatar alt={`${loggedInUser?.username}`} src={`/assets/images/${loggedInUser?.username}.png`} />
                                 {/* TODO: update this from auth selector */}
                             </IconButton>
                         </Tooltip>
