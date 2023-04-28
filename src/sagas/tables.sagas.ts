@@ -29,6 +29,7 @@ import {
   deleteTableFail,
   deleteTableSuccess,
 } from '@/store/delete-table.slice';
+import { getTablesStateSelector } from '@/store/selectors/get-tables.selectors';
 
 function* getTablesSaga() {
   try {
@@ -65,28 +66,25 @@ function* editTableSaga({ payload }: PayloadAction<TableModel>) {
   }
 }
 
-// function* editTableSuccessSaga({
-//   payload,
-// }: PayloadAction<TableModel>) {
-//   const gamePresenterList: GetTablesState = yield select(
-//     gamePresentersStateSelector,
-//   ) as GamePresentersState;
+function* editTableSuccessSaga({ payload }: PayloadAction<TableModel>) {
+  const tableList: GetTablesState = yield select(
+    getTablesStateSelector,
+  ) as GetTablesState;
 
-//   if (gamePresenterList.data) {
-//     yield* put(
-//       getGamePresentersSuccess({
-//         // NOTE: not really advisable for large scale app but adds a nice touch to this one
-//         data: gamePresenterList.data.map((gp) => {
-//           if (gp.id === payload.id) {
-//             return payload;
-//           } else {
-//             return gp;
-//           }
-//         }),
-//       }),
-//     );
-//   }
-// }
+  if (tableList.data) {
+    yield* put(
+      getTablesSuccess({
+        data: tableList.data.map((table) => {
+          if (table.id === payload.id) {
+            return payload;
+          } else {
+            return table;
+          }
+        }),
+      }),
+    );
+  }
+}
 
 function* deleteTableSaga({ payload }: PayloadAction<string>) {
   try {
@@ -103,7 +101,8 @@ export function* tablesSagas() {
     takeEvery(getTables, getTablesSaga),
     takeEvery(addTable, addTableSaga),
     takeEvery(editTable, editTableSaga),
-    // takeEvery(editGamePresenterSuccess, editGamePresenterSuccessSaga),
+    takeEvery(editTableSuccess, editTableSuccessSaga),
     takeEvery(deleteTable, deleteTableSaga),
+    takeEvery(deleteTableSuccess, getTablesSaga),
   ]);
 }
