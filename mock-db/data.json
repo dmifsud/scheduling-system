@@ -28,6 +28,30 @@
       {
         "id": "3AFC8023514C407E882F77D05ED27C15",
         "name": "Table 1"
+      },
+      {
+        "name": "Table 2",
+        "id": "D43F6877FC8448A585949169229C932C"
+      },
+      {
+        "name": "Table 3",
+        "id": "045912577BD341B586DC7D03F64FDBBA"
+      },
+      {
+        "name": "Table 4",
+        "id": "C291BD383C804558B0A82674B84E77E6"
+      },
+      {
+        "name": "Table 5",
+        "id": "F8255028F1684056976BB9B0F1BE6206"
+      },
+      {
+        "name": "Table 6",
+        "id": "DC84C2151C6149DBBF37212E9322DAEC"
+      },
+      {
+        "name": "Table 7",
+        "id": "55E53882BD4344F68668CD1AC06943B5"
       }
     ]
   },
@@ -40,6 +64,38 @@
         "shift": "Morning",
         "table": "Table 1",
         "breakSlot": "10:00 AM - 10:30 AM"
+      },
+      {
+        "name": "David",
+        "surname": "Mifsud",
+        "shift": "Afternoon",
+        "table": "Table 3",
+        "breakSlot": "10:00 AM - 10:30 AM",
+        "id": "AC18EF1027434B1B812102490F7C3321"
+      },
+      {
+        "name": "Jack",
+        "surname": "Johnson",
+        "shift": "Afternoon",
+        "table": "Table 3",
+        "breakSlot": "10:00 AM - 10:30 AM",
+        "id": "FBE3898DCE6342C9BD41146ABFE445F6"
+      },
+      {
+        "name": "Jane",
+        "surname": "Doe",
+        "shift": "Afternoon",
+        "table": "Table 3",
+        "breakSlot": "10:00 AM - 10:30 AM",
+        "id": "0E6BE401AB2D47E892EB18A01355780A"
+      },
+      {
+        "name": "John",
+        "surname": "Wick",
+        "shift": "Afternoon",
+        "table": "Table 3",
+        "breakSlot": "10:00 AM - 10:30 AM",
+        "id": "B454DD5E30234F5A89B4E14514E43604"
       }
     ]
   },
